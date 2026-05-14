@@ -1,0 +1,15 @@
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\bin\Debug\net10.0\BLL.deps.json
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\bin\Debug\net10.0\BLL.dll
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\bin\Debug\net10.0\BLL.pdb
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\bin\Debug\net10.0\DAL.dll
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\bin\Debug\net10.0\DAL.pdb
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\BLL.csproj.AssemblyReference.cache
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\BLL.AssemblyInfoInputs.cache
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\BLL.AssemblyInfo.cs
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\BLL.csproj.Up2Date
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\BLL.dll
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\refint\BLL.dll
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\BLL.pdb
+C:\Users\sadma\Desktop\New folder\BloodBankManagementSystem\BLL\obj\Debug\net10.0\ref\BLL.dll
