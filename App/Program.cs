@@ -1,4 +1,6 @@
+using BLL.Services;
 using DAL.EF;
+using DAL.Repos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,16 @@ builder.Services.AddDbContext<BloodBankManagementSystemContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConn"));
 });
+
+builder.Services.AddScoped<UserRepo>();
+builder.Services.AddScoped<BloodGroupInventoryRepo>();
+builder.Services.AddScoped<DonationRepo>();
+builder.Services.AddScoped<RequestRepo>();
+
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<BloodGroupInventoryService>();
+builder.Services.AddScoped<DonationService>();
+builder.Services.AddScoped<RequestService>();
 
 var app = builder.Build();
 

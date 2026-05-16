@@ -21,6 +21,8 @@ public partial class User
 
     public DateOnly? LastDonationDate { get; set; }
 
+    public DateOnly Dob { get; set; }
+
     public virtual BloodGroupInventory BloodGroup { get; set; } = null!;
 
     public virtual ICollection<Donation> Donations { get; set; } = new List<Donation>();
