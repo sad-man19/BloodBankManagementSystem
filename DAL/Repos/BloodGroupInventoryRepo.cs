@@ -15,5 +15,9 @@ namespace DAL.Repos
         {
             this.db = db;
         }
+        public List<BloodGroupInventory> Get()
+        {
+            return db.BloodGroupInventories.ToList();
+        }
     }
 }

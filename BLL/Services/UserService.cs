@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BLL.DTOs;
+using DAL.EF.Tables;
 using DAL.Repos;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,21 @@ namespace BLL.Services
         {
             this.repo = repo;
             mapper = MapperConfig.GetMapper();
+        }
+        public bool EmailExists(string email)
+        {
+            return repo.EmailExists(email);
+        }
+        public bool PhoneExists(string phone)
+        {
+            return repo.PhoneExists(phone);
+        }
+        public bool Create(UserDTO u)
+        {
+            var data = mapper.Map<UserDTO, User>(u);
+            data.Role = "User";
+            var result = repo.Create(data);
+            return result;
         }
     }
 }

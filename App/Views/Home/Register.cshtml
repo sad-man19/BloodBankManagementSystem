@@ -1,0 +1,73 @@
+﻿@model BLL.DTOs.UserDTO
+
+
+@{
+    ViewData["Title"] = "User Registration";
+}
+
+
+<div style="width: 450px; margin: 50px auto;">
+    <h1 class="text-center">User Registration</h1>
+
+    <div style="width: 450px;">
+        <form asp-action="Register" method="post">
+            <!--div asp-validation-summary="All" class="text-danger"></div-->
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label">Phone</label>
+                <input asp-for="Phone" type="tel" class="form-control" required />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="BloodGroupId" class="form-label">Blood Group</label>
+                <select asp-for="BloodGroupId" class="form-select" required>
+                    <option disabled selected value="">--Select--</option>
+                    @foreach (var bg in ViewBag.BloodGroupInventories)
+                    {
+                        <option value="@bg.Id">@bg.BloodGroup</option>
+                    }
+                </select>
+                <span asp-validation-for="BloodGroupId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Dob" class="form-label">Date of Birth</label>
+                <input asp-for="Dob" type="date" class="form-control" max="@DateTime.Today.ToString("yyyy-MM-dd")" required />
+                <span asp-validation-for="Dob" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" required />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+    <div class="text-center">
+        Already has an account? <a asp-area="" asp-controller="Home" asp-action="Login">Sign In</a>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

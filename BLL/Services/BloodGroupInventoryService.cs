@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BLL.DTOs;
 using DAL.Repos;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,12 @@ namespace BLL.Services
         {
             this.repo = repo;
             mapper = MapperConfig.GetMapper();
+        }
+        public List<BloodGroupInventoryDTO> Get()
+        {
+            var data = repo.Get();
+            var result = mapper.Map<List<BloodGroupInventoryDTO>>(data);
+            return result;
         }
     }
 }

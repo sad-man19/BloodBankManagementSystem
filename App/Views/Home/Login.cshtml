@@ -1,0 +1,38 @@
+﻿@model BLL.DTOs.UserDTO
+@{
+    ViewData["Title"] = "Login";
+    //Layout = "~/Views/Shared/_RegLoginLayout.cshtml";
+}
+
+<div>
+    <h1 class="text-center">Login</h1>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="text-center">
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        </div>
+    }
+    <div style="width: 450px; margin: 0 auto;">
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" type="email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-center">Don't have an account? <a asp-area="" asp-controller="Home" asp-action="register">Sign Up</a></div>
+</div>
+
