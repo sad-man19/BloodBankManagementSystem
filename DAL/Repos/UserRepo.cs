@@ -2,6 +2,7 @@
 using DAL.EF.Tables;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace DAL.Repos
@@ -27,6 +28,13 @@ namespace DAL.Repos
         {
             db.Users.Add(u);
             return db.SaveChanges() > 0;
+        }
+        public User Login(string email, string password)
+        {
+            //return db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            return (from u in db.Users
+            where u.Email == email && u.Password == password
+            select u).SingleOrDefault();
         }
     }
 }

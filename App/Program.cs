@@ -22,6 +22,13 @@ builder.Services.AddScoped<BloodGroupInventoryService>();
 builder.Services.AddScoped<DonationService>();
 builder.Services.AddScoped<RequestService>();
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,5 +51,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Login}/{id?}")
     .WithStaticAssets();
 
-
+app.UseSession();
 app.Run();

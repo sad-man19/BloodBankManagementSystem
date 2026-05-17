@@ -23,7 +23,7 @@ namespace BLL.DTOs
         public string Phone { get; set; }
         [Required (ErrorMessage ="Please Select your Blood Group")]
         public int BloodGroupId { get; set; }
-        //public string? Role { get; set; }
+        public string? Role { get; set; }
         public DateOnly? LastDonationDate { get; set; }
         [Required(ErrorMessage ="Date of Birth is required.")]
         public DateOnly Dob { get; set; }

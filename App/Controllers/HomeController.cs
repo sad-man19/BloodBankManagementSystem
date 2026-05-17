@@ -69,14 +69,44 @@ namespace App.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Login(string Email, string Password)
         {
+            if (!userService.EmailExists(Email))
+            {
+                //ModelState.AddModelError(string.Empty, "No user found!");
+                TempData["NoUser"] = "No user found";
+                return RedirectToAction("Login");
+            }
 
-            return View();
+            var user = userService.Login(Email, Password);
+            if(user != null)
+            {
+                HttpContext.Session.SetString("UserEmail", user.Email);
+                HttpContext.Session.SetString("UserName", user.Name);
+                HttpContext.Session.SetString("UserRole", user.Role);
+
+                if(user.Role == "Healthcare")
+                {
+                    return RedirectToAction("Dashboard", "Healthcare");
+                }
+                else if(user.Role == "User")
+                {
+                    return RedirectToAction("Dashboard", "User");
+                }
+                    //return RedirectToAction("Index");
+            }
+            TempData["Wrong"] = "Invalid Email or Password";
+            return RedirectToAction("Login");
         }
 
-
+        ////////////// Logout /////////////
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Home");
+        }
 
 
 

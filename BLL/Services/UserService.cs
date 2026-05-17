@@ -33,5 +33,11 @@ namespace BLL.Services
             var result = repo.Create(data);
             return result;
         }
+
+        public UserDTO Login(string email, string password)
+        {
+            var data = repo.Login(email, password);
+            return mapper.Map<User, UserDTO>(data);
+        }
     }
 }

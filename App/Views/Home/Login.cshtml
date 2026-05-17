@@ -1,7 +1,7 @@
 ﻿@model BLL.DTOs.UserDTO
 @{
     ViewData["Title"] = "Login";
-    //Layout = "~/Views/Shared/_RegLoginLayout.cshtml";
+    Layout = "~/Views/Shared/_RegLoginLayout.cshtml";
 }
 
 <div>
@@ -27,7 +27,19 @@
                 <input asp-for="Password" type="password" class="form-control" required />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="text-center">
+            @if(TempData["NoUser"] != null)
+                {
+                <div style="font:small; color:red">
+                    @TempData["NoUser"]
+                </div>
+                }
+            @if (TempData["Wrong"] != null)
+            {
+                <div style="font:small; color:red">
+                    @TempData["Wrong"]
+                </div>
+            }
+                <div class="text-center">
                 <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </form>
