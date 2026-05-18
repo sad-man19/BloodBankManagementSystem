@@ -1,0 +1,59 @@
+﻿@model BLL.DTOs.UserDTO
+@{
+    ViewData["Title"] = "EditUserProfile";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Edit Profile</h1>
+
+@if (Model != null)
+{
+
+    <div>
+        @if(TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        <form asp-action="EditUserProfile" method="post">
+            <table class="table table-bordered">
+                <tr>
+                    <td>Name:</td>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <td>Role:</td>
+                    <td>@Model.Role</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input class="form-control" asp-for="Email" type="email" value="@Model.Email" /></td>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td><input class="form-control" asp-for="Phone" type="tel" value="@Model.Phone" /></td>
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </tr>
+                <tr>
+                    <td>Blood Group:</td>
+                    <td>@Model.BloodGroup</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a asp-action="ViewProfile" class="btn btn-primary" asp-route-id="@Context.Session.GetInt32("UserId")">Back</a>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+}
+else
+{
+    <p>User profile not found.</p>
+}

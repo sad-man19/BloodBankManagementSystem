@@ -11,6 +11,12 @@
 {
 
     <div>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
         <table class="table table-bordered">
             <tr>
                 <td>Name:</td>
@@ -31,6 +37,12 @@
             <tr>
                 <td>Blood Group:</td>
                 <td>@Model.BloodGroup</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a asp-action="EditHealthcareProfile" class="btn btn-primary" asp-route-id="@Context.Session.GetInt32("UserId")">Edit Profile</a>
+                </td>
             </tr>
         </table>
     </div>

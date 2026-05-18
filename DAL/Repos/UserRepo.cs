@@ -55,5 +55,16 @@ namespace DAL.Repos
             return db.BloodGroupInventories.Find(id);
         }
 
+        public bool Update(User u)
+        {
+            var exUser = db.Users.Find(u.Id);
+            if (exUser == null)
+            {
+                return false;
+            }
+            exUser.Email = u.Email;
+            exUser.Phone = u.Phone;
+            return db.SaveChanges() > 0;
+        }
     }
 }

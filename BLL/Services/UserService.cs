@@ -61,5 +61,11 @@ namespace BLL.Services
 
             return result;
         }
+        public bool Update(UserDTO u)
+        {
+            var data = mapper.Map<UserDTO, User>(u);
+            var res = repo.Update(data);
+            return res;
+        }
     }
 }
