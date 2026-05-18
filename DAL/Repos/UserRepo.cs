@@ -36,5 +36,24 @@ namespace DAL.Repos
             where u.Email == email && u.Password == password
             select u).SingleOrDefault();
         }
+        //public User Get(int id)
+        //{
+        //    var user =  db.Users.Find(id);
+        //    if (user != null)
+        //    {
+        //        user.BloodGroupInventory = db.BloodGroupInventories.Find(user.BloodGroupId);
+        //    }
+        //    return user;
+        //}
+        public User Get(int id)
+        {
+            return db.Users.Find(id);
+        }
+
+        public BloodGroupInventory GetBloodGroup(int id)
+        {
+            return db.BloodGroupInventories.Find(id);
+        }
+
     }
 }

@@ -39,5 +39,27 @@ namespace BLL.Services
             var data = repo.Login(email, password);
             return mapper.Map<User, UserDTO>(data);
         }
+        //public UserDTO Get(int id)
+        //{
+        //    var data = repo.Get(id);
+        //    var result = mapper.Map<User, UserDTO>(data);
+
+        //    //result.BloodGroup = data.BloodGroupInventory?.BloodGroup;
+        //    result.BloodGroup = data.BloodGroupInventory != null? data.BloodGroupInventory.BloodGroup : null;
+        //    return result;
+        //}
+        public UserDTO Get(int id)
+        {
+            var data = repo.Get(id);
+            if (data == null) return null;
+
+            var result = mapper.Map<User, UserDTO>(data);
+
+            var bg = repo.GetBloodGroup(data.BloodGroupId);
+
+            result.BloodGroup = bg?.BloodGroup;
+
+            return result;
+        }
     }
 }

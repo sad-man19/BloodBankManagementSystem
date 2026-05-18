@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.EF.Tables;
 
@@ -16,6 +17,8 @@ public partial class User
     public string Phone { get; set; } = null!;
 
     public int BloodGroupId { get; set; }
+    //[ForeignKey("BloodGroupId")]
+    //public virtual BloodGroupInventory BloodGroupInventory { get; set; }
 
     public string Role { get; set; } = null!;
 

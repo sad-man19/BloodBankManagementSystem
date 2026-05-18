@@ -1,8 +1,40 @@
-﻿
+﻿@model BLL.DTOs.UserDTO
 @{
     ViewData["Title"] = "User ViewProfile";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 <h1>User ViewProfile</h1>
+@if(Model !=  null)
+{
 
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <td>Name:</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td>Role:</td>
+            <td>@Model.Role</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td>@Model.Phone</td>
+        </tr>
+        <tr>
+            <td>Blood Group:</td>
+            <td>@Model.BloodGroup</td>
+        </tr>
+    </table>
+</div>
+
+}
+else
+{
+    <p>User profile not found.</p>
+}

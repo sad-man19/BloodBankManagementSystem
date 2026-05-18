@@ -83,6 +83,7 @@ namespace App.Controllers
             var user = userService.Login(Email, Password);
             if(user != null)
             {
+                HttpContext.Session.SetInt32("UserId", user.Id);
                 HttpContext.Session.SetString("UserEmail", user.Email);
                 HttpContext.Session.SetString("UserName", user.Name);
                 HttpContext.Session.SetString("UserRole", user.Role);
