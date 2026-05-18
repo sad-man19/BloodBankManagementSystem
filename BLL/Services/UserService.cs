@@ -2,6 +2,7 @@
 using BLL.DTOs;
 using DAL.EF.Tables;
 using DAL.Repos;
+using BLL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,14 +30,33 @@ namespace BLL.Services
         public bool Create(UserDTO u)
         {
             var data = mapper.Map<UserDTO, User>(u);
+            data.Password = PassHash.GetMd5(u.Password);
             data.Role = "User";
             var result = repo.Create(data);
             return result;
         }
 
+        //public bool Create(UserDTO u)
+        //{
+        //    try
+        //    {
+        //        var data = mapper.Map<UserDTO, User>(u);
+
+        //        data.Password = PassHash.GetMd5(u.Password);
+        //        data.Role = "User";
+
+        //        return repo.Create(data);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+
         public UserDTO Login(string email, string password)
         {
-            var data = repo.Login(email, password);
+            var data = repo.Login(email, PassHash.GetMd5(password));
+            //var data = repo.Login(email, password);
             return mapper.Map<User, UserDTO>(data);
         }
         //public UserDTO Get(int id)
@@ -51,7 +71,10 @@ namespace BLL.Services
         public UserDTO Get(int id)
         {
             var data = repo.Get(id);
-            if (data == null) return null;
+            if (data == null)
+            {
+                return null;
+            }
 
             var result = mapper.Map<User, UserDTO>(data);
 
@@ -67,5 +90,23 @@ namespace BLL.Services
             var res = repo.Update(data);
             return res;
         }
+        public bool ChangePass(UserDTO u)
+        {
+            var user = repo.Get(u.Id);
+            string currentPass = PassHash.GetMd5(u.Password);
+            //string currentPass = u.Password;
+            if(user.Password != currentPass)
+            {
+                return false;
+            }
+            user.Password = PassHash.GetMd5(u.NewPassword);
+            return repo.ChangePass(user);
+        }
+
+        public bool Delete(int id)
+        {
+            return repo.Delete(id);
+        }
+
     }
 }

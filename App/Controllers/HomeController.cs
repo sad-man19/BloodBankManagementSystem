@@ -27,8 +27,11 @@ namespace App.Controllers
         [HttpPost]
         public IActionResult Register(UserDTO u)
         {
+            ModelState.Remove("NewPassword");
+            ModelState.Remove("ConfirmNewPassword");
             if (ModelState.IsValid)
             {
+                
                 if (userService.EmailExists(u.Email))
                 {
                     ModelState.AddModelError("Email", "Email already exists.");

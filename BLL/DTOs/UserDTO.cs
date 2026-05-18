@@ -24,7 +24,7 @@ namespace BLL.DTOs
         [Required (ErrorMessage ="Please Select your Blood Group")]
         public int BloodGroupId { get; set; }
 
-        public string BloodGroup { get; set; }
+        public string? BloodGroup { get; set; }
         public string? Role { get; set; }
         public DateOnly? LastDonationDate { get; set; }
         [Required(ErrorMessage ="Date of Birth is required.")]
@@ -33,5 +33,12 @@ namespace BLL.DTOs
         [MinLength(6, ErrorMessage = "Minimum 6 Digit")]
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "New Password is Required")]
+        [MinLength(6, ErrorMessage = "Minimum 6 Digit")]
+        public string NewPassword { get; set; }
+        [Required(ErrorMessage = "Please confirm your new password.")]
+        [Compare("NewPassword", ErrorMessage = "Passwords do not match.")]
+        public string ConfirmNewPassword { get; set; }
     }
 }

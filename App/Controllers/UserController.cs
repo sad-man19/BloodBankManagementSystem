@@ -20,7 +20,15 @@ namespace App.Controllers
         }
         public IActionResult Dashboard()
         {
-            return View();
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var user = userService.Get(userId.Value);
+
+            return View(user);
         }
         [HttpGet]
         public IActionResult ViewProfile(int id)
@@ -73,7 +81,9 @@ namespace App.Controllers
             ModelState.Remove("Role");
             ModelState.Remove("LastDonationDate");
             ModelState.Remove("Dob");
-            
+            ModelState.Remove("NewPassword");
+            ModelState.Remove("ConfirmNewPassword");
+
             if (ModelState.IsValid)
             {
                 var res = userService.Update(u);
@@ -92,6 +102,67 @@ namespace App.Controllers
             }
             return View(u);
 
+        }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ChangePassword(UserDTO u)
+        {
+            var UserId = HttpContext.Session.GetInt32("UserId").Value;
+            ModelState.Remove("Name");
+            ModelState.Remove("Email");
+            ModelState.Remove("Phone");
+            ModelState.Remove("ConfirmPassword");
+            ModelState.Remove("BloodGroupId");
+            ModelState.Remove("BloodGroup");
+            ModelState.Remove("Role");
+            ModelState.Remove("LastDonationDate");
+            ModelState.Remove("Dob");
+            if (!ModelState.IsValid)
+            {
+                return View(u);
+            }
+            var res = userService.ChangePass(u);
+            if (res == true)
+            {
+                TempData["PassChange"] = "Password changed successfully.";
+                return RedirectToAction("ViewProfile", new { id = HttpContext.Session.GetInt32("UserId") });
+
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to change password. Please try again.";
+                return View(u);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult DeleteUser()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var user = userService.Get(userId.Value);
+
+            return View(user);
+        }
+        [HttpPost]
+        public IActionResult DeleteUser(int id, string Decision)
+        {
+            if (Decision.Equals("Yes"))
+            {
+                userService.Delete(id);
+                TempData["DeleteMessage"] = "Account deleted successfully.";
+                return RedirectToAction("Login", "Home");
+            }
+            return RedirectToAction("ViewProfile", new { id = HttpContext.Session.GetInt32("UserId") });
         }
     }
 }

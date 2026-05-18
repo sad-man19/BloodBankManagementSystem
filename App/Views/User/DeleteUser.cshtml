@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "DeleteUser";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Are you sure you want to delete your account?</h1>
+<h3>@Model.Name</h3>
+<form action="DeleteUser" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <input type="submit" name="Decision" value="Yes" class="btn btn-danger" />
+    <input type="submit" name="Decision" value="No" class="btn btn-primary" />
+</form>
+

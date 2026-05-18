@@ -57,3 +57,10 @@ else
 {
     <p>User profile not found.</p>
 }
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

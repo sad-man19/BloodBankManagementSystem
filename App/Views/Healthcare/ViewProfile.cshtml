@@ -11,6 +11,12 @@
 {
 
     <div>
+        @if(TempData["PassChange"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["PassChange"]
+            </div>
+        }
         @if (TempData["SuccessMessage"] != null)
         {
             <div class="alert alert-success">
@@ -42,6 +48,7 @@
                 <td></td>
                 <td>
                     <a asp-action="EditHealthcareProfile" class="btn btn-primary" asp-route-id="@Context.Session.GetInt32("UserId")">Edit Profile</a>
+                    <a asp-action="ChangePassword" class="btn btn-secondary" asp-route-id="@Context.Session.GetInt32("UserId")">Change Password</a>
                 </td>
             </tr>
         </table>

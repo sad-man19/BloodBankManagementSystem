@@ -6,7 +6,7 @@
 
 <h1>Edit Profile (Healthcare)</h1>
 
-
+<div asp-validation-summary="All" class="text-danger"></div>
 
 @if (Model != null)
 {
@@ -58,4 +58,11 @@
 else
 {
     <p>User profile not found.</p>
+}
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

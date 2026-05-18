@@ -66,5 +66,23 @@ namespace DAL.Repos
             exUser.Phone = u.Phone;
             return db.SaveChanges() > 0;
         }
+
+        public bool ChangePass(User u)
+        {
+            var exUser = db.Users.Find(u.Id);
+            if (exUser == null)
+            {
+                return false;
+            }
+            exUser.Password = u.Password;
+            return db.SaveChanges() > 0;
+        }
+
+        public bool Delete(int id)
+        {
+            var exUser = db.Users.Find(id);
+            db.Users.Remove(exUser);
+            return db.SaveChanges() > 0;
+        }
     }
 }
