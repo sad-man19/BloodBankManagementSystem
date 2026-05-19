@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BLL.DTOs.DonationDTO>
+@{
+    ViewData["Title"] = "ViewDonations";
+    Layout = "~/Views/Shared/_HealthcareLayout.cshtml";
+}
+
+<h1>All Blood Donations</h1>
+
+<div>
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User name</th>
+            <th>Blood Group</th>
+            <th>Donation Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                <td>@Html.DisplayFor(modelItem => item.BloodGroup)</td>
+                <td>@Html.DisplayFor(modelItem => item.DonationDate)</td>
+            </tr>
+            }
+        </tbody>
+</table>
+</div>

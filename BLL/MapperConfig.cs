@@ -14,8 +14,12 @@ namespace BLL
             //entity to dto and dto to entity
             cfg.CreateMap<User, UserDTO>().ReverseMap();
             cfg.CreateMap<BloodGroupInventory, BloodGroupInventoryDTO>().ReverseMap();
-            cfg.CreateMap<Donation, DonationDTO>().ReverseMap();
+            //cfg.CreateMap<Donation, DonationDTO>().ReverseMap();
             cfg.CreateMap<Request, RequestDTO>().ReverseMap();
+            cfg.CreateMap<Donation, DonationDTO>();
+
+            cfg.CreateMap<DonationDTO, Donation>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
         });
 
         public static Mapper GetMapper()

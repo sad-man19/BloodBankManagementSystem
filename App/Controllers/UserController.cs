@@ -18,18 +18,7 @@ namespace App.Controllers
             this.donationService = donationService;
             this.requestService = requestService;
         }
-        public IActionResult Dashboard()
-        {
-            var userId = HttpContext.Session.GetInt32("UserId");
 
-            if (userId == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            var user = userService.Get(userId.Value);
-
-            return View(user);
-        }
         [HttpGet]
         public IActionResult ViewProfile(int id)
         {
@@ -163,6 +152,96 @@ namespace App.Controllers
                 return RedirectToAction("Login", "Home");
             }
             return RedirectToAction("ViewProfile", new { id = HttpContext.Session.GetInt32("UserId") });
+        }
+
+        [HttpGet]
+        public IActionResult RecordDonation()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult RecordDonation(DonationDTO d)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var user = userService.Get(userId.Value);
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            d.UserId = userId.Value;
+            d.BloodGroupId = user.BloodGroupId;
+
+            var res = donationService.CreateDonation(d);
+            if (res == true)
+            {
+                TempData["DonationMessage"] = "Donation recorded successfully.";
+                return RedirectToAction("Dashboard");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to record donation. Please try again.";
+                return View(d);
+            }
+
+            //return View();
+        }
+
+        [HttpGet]
+        public IActionResult Dashboard()
+        {
+
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var user = userService.Get(userId.Value);
+            ViewBag.UserName = user.Name;
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+            var res = donationService.Get(userId.Value);
+            return View(res);
+        }
+
+        [HttpGet]
+        public IActionResult Request()
+        {
+            ViewBag.BloodGroupInventories = bloodGroupInventoryService.Get();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Request(RequestDTO r)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var user = userService.Get(userId.Value);
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ModelState.Remove("UserId");
+            ModelState.Remove("ReqDate");
+            ModelState.Remove("Status");
+            ModelState.Remove("Email");
+
+            r.UserId = userId.Value;
+            r.ReqDate = DateOnly.FromDateTime(DateTime.Now);
+            r.Status = "Pending";
+
+
+            var res = requestService.CreateRequest(r);
+            if (res == true)
+            {
+                TempData["RequestMessage"] = "Request submitted successfully.";
+                return RedirectToAction("Dashboard");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to submit request. Please try again.";
+                ViewBag.BloodGroupInventories = bloodGroupInventoryService.Get();
+                return View(r);
+            }
         }
     }
 }

@@ -24,7 +24,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="ViewProfile" asp-route-id="@Context.Session.GetInt32("UserId")">View Profile</a>
                         </li>
                         <li class="nav-item">
-                            <!--a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</!--a-->
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="RecordDonation" asp-route-id="@Context.Session.GetInt32("UserId")">Record Donation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Request" asp-route-id="@Context.Session.GetInt32("UserId")">Request Blood</a>
                         </li>
                         <li class="nav-item ms-auto">
                             <a class="btn btn-danger" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>

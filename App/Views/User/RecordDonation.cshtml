@@ -1,0 +1,30 @@
+﻿@model BLL.DTOs.DonationDTO
+@{
+    ViewData["Title"] = "RecordDonation";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Record Donation</h1>
+<div asp-validation-summary="All" class="text-danger"></div>
+<div>
+    <form asp-action="RecordDonation" method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Donation Date</label>
+            <input type="date" asp-for="DonationDate" class="form-control" max="@DateTime.Today.ToString("yyyy-MM-dd")" required/>
+            <span asp-validation-for="DonationDate" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-danger">
+            Submit Donation
+        </button>
+
+    </form>
+</div>
+
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

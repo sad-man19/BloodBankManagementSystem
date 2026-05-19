@@ -7,12 +7,16 @@ namespace BLL.DTOs
 {
     public class DonationDTO
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [Required]
         public int UserId { get; set; }
         [Required]
         public DateOnly DonationDate { get; set; }
         [Required]
         public int BloodGroupId { get; set; }
+
+        //only for display purpose
+        public string? UserName { get; set; }
+        public string? BloodGroup { get; set; }
     }
 }

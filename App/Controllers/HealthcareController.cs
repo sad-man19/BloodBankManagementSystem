@@ -140,5 +140,51 @@ namespace App.Controllers
                 return View(u);
             }
         }
+
+        [HttpGet]
+        public IActionResult ViewInventory()
+        {
+            var data = bloodGroupInventoryService.Get();
+            return View(data);
+        }
+        [HttpGet]
+        public IActionResult ViewDonations()
+        {
+            
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if(userId == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var data = donationService.GetAll();
+            return View(data);
+
+            
+        }
+        [HttpGet]
+        public IActionResult ViewRequests()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var data = requestService.GetAll();
+            return View(data);
+        }
+        [HttpGet]
+        public IActionResult DeleteRequest(int id)
+        {
+            var res = requestService.DeleteRequest(id);
+            if(res == true)
+            {
+                TempData["SuccessMessage"] = "Request deleted successfully.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to delete request. Please try again.";
+            }
+            return RedirectToAction("ViewRequests");
+        }
     }
 }

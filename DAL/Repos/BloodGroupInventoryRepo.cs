@@ -19,5 +19,15 @@ namespace DAL.Repos
         {
             return db.BloodGroupInventories.ToList();
         }
+        public BloodGroupInventory Get(int id)
+        {
+            return db.BloodGroupInventories.Find(id);
+        }
+        public bool UpdateStock(int bloodGroupId)
+        {
+            var qty = db.BloodGroupInventories.Find(bloodGroupId);
+            qty.Inventory += 1;
+            return db.SaveChanges() > 0;
+        }
     }
 }

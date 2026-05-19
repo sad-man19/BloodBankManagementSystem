@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BLL.DTOs.RequestDTO>
+@{
+    ViewData["Title"] = "ViewRequests";
+    Layout = "~/Views/Shared/_HealthcareLayout.cshtml";
+}
+
+<h1>All Blood Requests</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if(TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>User name</th>
+                <th>Blood Group</th>
+                <th>Quantity</th>
+                <th>Request Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BloodGroup)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ReqDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>
+                        <button class="btn btn-success" disabled>Approve</button>
+                        <a asp-action="DeleteRequest" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

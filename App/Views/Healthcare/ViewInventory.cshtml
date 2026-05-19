@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BLL.DTOs.BloodGroupInventoryDTO>
+@{
+    ViewData["Title"] = "ViewInventory";
+    Layout = "~/Views/Shared/_HealthcareLayout.cshtml";
+}
+
+<h1>Blood Inventory</h1>
+
+<div>
+    <table class="table table-bordered">
+    <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BloodGroup)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inventory)
+                </th>
+            </tr>
+    </thead>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BloodGroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inventory)
+            </td>
+        </tr>
+        }
+
+</table>
+</div>

@@ -42,8 +42,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhbHRoY2FyZVxFZGl0SGVhbHRoY2FyZVByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/sadma/Desktop/New folder/BloodBankManagementSystem/App/Views/Healthcare/ViewDonations.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhbHRoY2FyZVxWaWV3RG9uYXRpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sadma/Desktop/New folder/BloodBankManagementSystem/App/Views/Healthcare/ViewInventory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhbHRoY2FyZVxWaWV3SW52ZW50b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/sadma/Desktop/New folder/BloodBankManagementSystem/App/Views/Healthcare/ViewProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhbHRoY2FyZVxWaWV3UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sadma/Desktop/New folder/BloodBankManagementSystem/App/Views/Healthcare/ViewRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhbHRoY2FyZVxWaWV3UmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sadma/Desktop/New folder/BloodBankManagementSystem/App/Views/Home/Index.cshtml]
@@ -96,6 +108,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/sadma/Desktop/New folder/BloodBankManagementSystem/App/Views/User/EditUserProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0VXNlclByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sadma/Desktop/New folder/BloodBankManagementSystem/App/Views/User/RecordDonation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWNvcmREb25hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sadma/Desktop/New folder/BloodBankManagementSystem/App/Views/User/Request.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZXF1ZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sadma/Desktop/New folder/BloodBankManagementSystem/App/Views/User/ViewProfile.cshtml]

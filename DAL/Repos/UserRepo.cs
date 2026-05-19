@@ -33,8 +33,8 @@ namespace DAL.Repos
         {
             //return db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
             return (from u in db.Users
-            where u.Email == email && u.Password == password
-            select u).SingleOrDefault();
+                    where u.Email == email && u.Password == password
+                    select u).SingleOrDefault();
         }
         //public User Get(int id)
         //{
@@ -66,6 +66,16 @@ namespace DAL.Repos
             exUser.Phone = u.Phone;
             return db.SaveChanges() > 0;
         }
+        public bool UpdateLastDonation(User u)
+        {
+            var exUser = db.Users.Find(u.Id);
+            if (exUser == null)
+            {
+                return false;
+            }
+            exUser.LastDonationDate = u.LastDonationDate;
+            return db.SaveChanges() > 0;
+        }
 
         public bool ChangePass(User u)
         {
@@ -83,6 +93,10 @@ namespace DAL.Repos
             var exUser = db.Users.Find(id);
             db.Users.Remove(exUser);
             return db.SaveChanges() > 0;
+        }
+        public List<User> GetAll()
+        {
+            return db.Users.ToList();
         }
     }
 }

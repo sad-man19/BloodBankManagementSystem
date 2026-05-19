@@ -1,8 +1,53 @@
-﻿@model BLL.DTOs.UserDTO
+﻿@model IEnumerable<BLL.DTOs.DonationDTO>
 @{
     ViewData["Title"] = "User Dashboard";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 <h1 class="text-center">User Dashboard</h1>
-<h1>Welcome @Model.Name,</h1>
+<h1>Welcome @ViewBag.UserName,</h1>
+@if(TempData["RequestMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["RequestMessage"]
+    </div>
+}
+
+@if(Model == null || !Model.Any())
+{
+    <h4 class="text-center" style="color:red;">No Donations Found!</h4>
+}
+else
+{
+    <div>
+        <h3><br />Your Donations</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Donation Id
+                    </th>
+                    <th>
+                        Donation Date
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DonationDate)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

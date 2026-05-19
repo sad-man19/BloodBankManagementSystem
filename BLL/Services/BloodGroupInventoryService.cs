@@ -23,5 +23,9 @@ namespace BLL.Services
             var result = mapper.Map<List<BloodGroupInventoryDTO>>(data);
             return result;
         }
+        private bool UpdateStock(int bloodGroupId)
+        {
+            return repo.UpdateStock(bloodGroupId);
+        }
     }
 }

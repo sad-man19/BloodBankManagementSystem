@@ -1,0 +1,41 @@
+﻿@model BLL.DTOs.RequestDTO
+@{
+    ViewData["Title"] = "Request";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Request for Blood</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<div asp-validation-summary="All" class="text-danger"></div>
+<div style="width:450px; margin:50px auto;">
+    <form asp-action="Request" method="post">
+        <div class="mb-3" >
+            <label asp-for="BloodGroupId" class="form-label">Select Blood Group</label>
+            <select asp-for="BloodGroupId" class="form-select" required>
+                <option disabled selected value="">--Select--</option>
+                @foreach (var bg in ViewBag.BloodGroupInventories)
+                {
+                    <option value="@bg.Id">@bg.BloodGroup</option>
+                }
+            </select>
+            <span asp-validation-for="BloodGroupId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Quantity" class="form-label">Quantity (in bags)</label>
+            <input asp-for="Quantity" type="number" class="form-control" min="1" required />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+        </div>
+    </form>
+</div>
+
+
+
